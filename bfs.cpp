@@ -5,30 +5,30 @@
 using namespace std;
 
 vector <int> bfs (int V, vector<int> adj[]){
-    vector<int> vis(V, 0);
-    queue<int> q;
+    vector<int> vis(V, 0); //array to mark nodes 1 when we visit them 
+    queue<int> q; // queue, for keeping all the neighbours of a node
 
-    vis[0] = 1;
-    q.push(0);
+    vis[0] = 1; //mark the very first node as visited
+    q.push(0); // pushing it to the queue
 
-    vector<int> bfs;
+    vector<int> bfs; // vector for keeping the traversed nodes. It is returned at the end of the function
 
-    while (!q.empty()){
-        int node = q.front();
-        q.pop();
-        bfs.push_back(node);
+    while (!q.empty()){ //while the queue is not empty
+        int node = q.front(); // keep the upper node in the queue
+        q.pop(); // delete it from the queue, so next time we get the next one
+        bfs.push_back(node); // push the node into the vector
 
-        for (int it: adj[node]){
-            if (!vis[it]){
-                vis[it] = 1;
-                q.push(it);
+        for (int it: adj[node]){ // go through all the neighbours of the node
+            if (!vis[it]){ // iff the neighbour is not visited
+                vis[it] = 1; // mark the neighbour as visited
+                q.push(it); // push it into the queue
 
             }
         }
 
     }
 
-    return bfs;
+    return bfs; // return the result
 
 }
 
